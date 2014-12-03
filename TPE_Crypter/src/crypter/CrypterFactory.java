@@ -2,6 +2,7 @@ package crypter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import crypter.exception.CrypterException;
@@ -341,17 +342,34 @@ public class CrypterFactory {
 		
 	}
 	
-	
-	
-	public interface Crypter {
+	public class IterableCrypter implements Iterable<String> {
+
+		private String[] list;
+		private Crypter crypter;
 		
-		public String encrypt(String message) throws CrypterException;
+		public IterableCrypter(List<String> list, Crypter crypter) {
+			this.list = (String[]) list.toArray();
+			this.crypter = crypter;
+		}
 		
-		public List<String> encrypt(List<String> messages) throws CrypterException;
-		
-		public String decrypt(String cypherText) throws CrypterException;
-		
-		public List<String> decrypt(List<String> cypherTexte) throws CrypterException;
+		@Override
+		public Iterator<String> iterator() {
+			
+			return new Iterator<String>() {
+				private int pos = 0;
+
+				@Override
+				public boolean hasNext() {
+					return (pos < list.length);
+				}
+
+				@Override
+				public String next() {
+					return list[pos++];
+				}
+				
+			};
+		}
 		
 	}
 	
