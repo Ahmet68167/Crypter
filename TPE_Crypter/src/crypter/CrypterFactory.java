@@ -233,7 +233,10 @@ public class CrypterFactory {
 			}
 			
 			for(int i = 0; i < cypherText.length(); i++) {
-				txt += (char) ((cypherText.charAt(i) - 64) ^ (key.charAt(i) - 64) + 64);
+				if(((cypherText.charAt(i) - 64) ^ (key.charAt(i) - 64)) > 32)
+					txt += (char) ((cypherText.charAt(i) - 64) ^ (key.charAt(i) - 64) + 64 - 32);
+				else
+					txt += (char) ((cypherText.charAt(i) - 64) ^ (key.charAt(i) - 64) + 64);
 			}
 			
 			return txt;
