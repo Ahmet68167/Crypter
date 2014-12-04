@@ -14,7 +14,7 @@ public class CrypterFactory {
 		CAESAR, SUBSTITUTION, REVERSE, XOR, NULL;
 	}
 	
-	public Crypter createCrypter(String key, Crypt chiffre) throws IllegalKeyException{
+	public static Crypter createCrypter(String key, Crypt chiffre) throws IllegalKeyException{
 
 		if(chiffre == Crypt.CAESAR) {
 			if(key.length() != 1 || key.charAt(0) < 65 && key.charAt(0) > 90) 
@@ -58,7 +58,7 @@ public class CrypterFactory {
 			return null;
 	}
 	
-	private class CrypterCaesar implements Crypter {
+	private static class CrypterCaesar implements Crypter {
 		
 		private String key;
 		
@@ -124,7 +124,7 @@ public class CrypterFactory {
 		
 	}
 	
-	private class CrypterSubstitution implements Crypter {
+	private static class CrypterSubstitution implements Crypter {
 
 		private String key;
 		
@@ -182,7 +182,7 @@ public class CrypterFactory {
 		
 	}
 	
-	private class CrypterXOR implements Crypter {
+	private static class CrypterXOR implements Crypter {
 
 		private String key;
 		
@@ -254,7 +254,7 @@ public class CrypterFactory {
 		
 	}
 	
-	private class CrypterNull implements Crypter {
+	private static class CrypterNull implements Crypter {
 
 		@Override
 		public String encrypt(String message) throws CrypterException {
@@ -295,7 +295,7 @@ public class CrypterFactory {
 		
 	}
 	
-	private class CrypterReverse implements Crypter {
+	private static class CrypterReverse implements Crypter {
 
 		@Override
 		public String encrypt(String message) throws CrypterException {
@@ -338,37 +338,6 @@ public class CrypterFactory {
 			}
 
 			return msg;
-		}
-		
-	}
-	
-	public class IterableCrypter implements Iterable<String> {
-
-		private String[] list;
-		private Crypter crypter;
-		
-		public IterableCrypter(List<String> list, Crypter crypter) {
-			this.list = (String[]) list.toArray();
-			this.crypter = crypter;
-		}
-		
-		@Override
-		public Iterator<String> iterator() {
-			
-			return new Iterator<String>() {
-				private int pos = 0;
-
-				@Override
-				public boolean hasNext() {
-					return (pos < list.length);
-				}
-
-				@Override
-				public String next() {
-					return list[pos++];
-				}
-				
-			};
 		}
 		
 	}
