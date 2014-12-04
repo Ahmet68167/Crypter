@@ -10,12 +10,8 @@ public class IterableDecrypter implements Iterable<String>{
 	private Iterator<String> iterator;
 	private Crypter crypter;
 	
-	private IterableDecrypter(Crypter crypter) {
-		this.crypter = crypter;
-	}
-	
 	public IterableDecrypter(Iterable list, Crypter crypter) {
-		this(crypter);
+		this.crypter = crypter;
 		this.iterator = list.iterator();
 	}
 	
