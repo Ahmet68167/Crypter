@@ -200,7 +200,7 @@ public class CrypterFactory {
 			}
 			
 			for(int i = 0; i < message.length(); i++) {
-				if(((message.charAt(i) - 64) ^ (key.charAt(i) - 64) + 64) > 32)
+				if(((message.charAt(i) - 64) ^ (key.charAt(i) - 64)) > 32)
 					txt += (char) ((message.charAt(i) - 64) ^ (key.charAt(i) - 64) + 64 - 32);
 				else
 					txt += (char) ((message.charAt(i) - 64) ^ (key.charAt(i) - 64) + 64); 
