@@ -11,13 +11,13 @@ public class IterableCrypter implements Iterable<String> {
 	private Iterator<String> iterator;
 	private Crypter crypter;
 	
-	public IterableCrypter(List<String> list, Crypter crypter) {
+	private IterableCrypter(Crypter crypter) {
 		this.crypter = crypter;
-		this.iterator = list.iterator();
 	}
 	
-	public IterableCrypter(IterableCrypter iterable, Crypter crypter) {
-		// FEHLT
+	public IterableCrypter(Iterable list, Crypter crypter) {
+		this(crypter);
+		this.iterator = list.iterator();
 	}
 	
 	@Override
