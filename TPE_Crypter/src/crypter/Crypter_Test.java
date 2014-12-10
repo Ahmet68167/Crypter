@@ -8,17 +8,16 @@ import crypter.exception.IllegalKeyException;
 
 public class Crypter_Test {
 
-	@Test
+	@Test //(expected = IllegalKeyException.class)
 	public void Crypter_Caesar_Test() {
 		CrypterFactory crypter = new CrypterFactory();
 		
 		try {
-			Crypter caesar = crypter.createCrypter("K", CrypterFactory.Crypt.CAESAR);
-		} catch(IllegalKeyException e) {
-			
-		} finally {
+			Crypter caesar = crypter.createCrypter("Ka", CrypterFactory.Crypt.CAESAR);
 			fail();
-		}
+		} catch(IllegalKeyException e) {
+			assertTrue(true);
+		} 
 		
 		}
 
