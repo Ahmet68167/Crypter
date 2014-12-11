@@ -17,7 +17,7 @@ public class CrypterFactory {
 	public static Crypter createCrypter(String key, Crypt chiffre) throws IllegalKeyException{
 
 		if(chiffre == Crypt.CAESAR) {
-			if(key.length() != 1 || key.charAt(0) < 65 && key.charAt(0) > 90) 
+			if(key.length() != 1 || key.charAt(0) < 65 || key.charAt(0) > 90) 
 				throw new IllegalKeyException();
 			
 			return new CrypterCaesar(key);
@@ -27,6 +27,9 @@ public class CrypterFactory {
 			char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
 					'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
 					'W', 'X', 'Y', 'Z' };
+			
+			if(key.length() > 26)
+				throw new IllegalKeyException();
 			
 			for(int i = 0; i < key.length(); i++) {
 				keys[i] = key.charAt(i);
