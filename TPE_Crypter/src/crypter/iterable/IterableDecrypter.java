@@ -5,12 +5,22 @@ import java.util.Iterator;
 import crypter.Crypter;
 import crypter.exception.CrypterException;
 
+/** 
+ *Iterable zur Entschluesselung von mehreren Nachrichten.
+ *
+ */
 public class IterableDecrypter implements Iterable<String>{
 
 	private Iterator<String> iterator;
 	private Crypter crypter;
 	
-	public IterableDecrypter(Iterable list, Crypter crypter) {
+	/**
+	 * Entschluesselt die uebergebene Liste waehrend der Iteration
+	 * 
+	 * @param list - Liste von Nachrichten, die entschluesselt werden sollen
+	 * @param crypter - Verschluesselungsmethode
+	 */
+	public IterableDecrypter(Iterable<String> list, Crypter crypter) {
 		this.crypter = crypter;
 		this.iterator = list.iterator();
 	}
