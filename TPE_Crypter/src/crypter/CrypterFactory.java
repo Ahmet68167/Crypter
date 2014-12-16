@@ -7,12 +7,28 @@ import java.util.List;
 import crypter.exception.CrypterException;
 import crypter.exception.IllegalKeyException;
 
+/**
+ * Beinhaltet die Verschluesselungsmethoden und die CreateCrypter Methode,
+ * Die CreateCrypter Methode gibt ein Verschluesselungsverfahren mit dem uebergebenen
+ * Schluessel zurueck
+ *
+ */
 public class CrypterFactory {
 	
+	/**
+	 * Ansammlung der Verschluesselungsmethoden
+	 *
+	 */
 	public enum Crypt {
 		CAESAR, SUBSTITUTION, REVERSE, XOR, NULL;
 	}
 	
+	/**
+	 * @param key - Schluessel mit dem das Wort verschluesselt bzw. entschluesselt wird
+	 * @param chiffre - Verschluesselungsmethode
+	 * @return eine Verschluesselungsmethode
+	 * @throws IllegalKeyException - wird bei einem ungueltigen Key geworfen
+	 */
 	public static Crypter createCrypter(String key, Crypt chiffre) throws IllegalKeyException{
 
 		if(chiffre == Crypt.CAESAR) {
