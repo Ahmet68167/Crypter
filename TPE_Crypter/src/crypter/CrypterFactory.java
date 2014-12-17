@@ -17,6 +17,11 @@ public class CrypterFactory {
 	
 	/**
 	 * Ansammlung der Verschluesselungsmethoden
+	 * CAESAR
+	 * SUBSTITUTION
+	 * REVERSE
+	 * XOR
+	 * NULL
 	 *
 	 */
 	public enum Crypt {
@@ -29,7 +34,7 @@ public class CrypterFactory {
 	 * @return eine Verschluesselungsmethode
 	 * @throws IllegalKeyException - wird bei einem ungueltigen Key geworfen
 	 */
-	public static Crypter createCrypter(String key, Crypt chiffre) throws IllegalKeyException{
+	public static Crypter createCrypter(String key, Crypt chiffre) throws IllegalKeyException {
 
 		if(chiffre == Crypt.CAESAR) {
 			if(key.length() != 1 || key.charAt(0) < 65 || key.charAt(0) > 90) 
@@ -76,10 +81,22 @@ public class CrypterFactory {
 			return null;
 	}
 	
+	/**
+	 * Legt ein CrypterCaesar mit einem Schluessel an, um die 
+	 * Caesar-Verschluesselung anzuwenden.
+	 * 
+	 * Beinhaltet encrypt(String); encrypt(List); decrypt(String); decrypt(List)
+	 *
+	 */
 	private static class CrypterCaesar implements Crypter {
 		
 		private String key;
 		
+		/**
+		 * Legt einen CrypterCaesar mit dem entsprechenden Schluessel an.
+		 * 
+		 * @param key - Schluessel, mit dem das Verfahren durchgefuehrt werden soll.
+		 */
 		private CrypterCaesar(String key) {
 			this.key = key;
 		}
@@ -142,10 +159,22 @@ public class CrypterFactory {
 		
 	}
 	
+	/**
+	 * Legt ein CrypterSubstitution mit einem Schluessel an, um die 
+	 * Substitutions-Verschluesselung anzuwenden.
+	 * 
+	 * Beinhaltet encrypt(String); encrypt(List); decrypt(String); decrypt(List)
+	 *
+	 */
 	private static class CrypterSubstitution implements Crypter {
 
 		private String key;
 		
+		/**
+		 * Legt einen CrypterSubstitution mit dem entsprechenden Schluessel an.
+		 * 
+		 * @param key - Schluessel, mit dem das Verfahren durchgefuehrt werden soll.
+		 */
 		private CrypterSubstitution(String key) {
 			this.key = key;
 		}
@@ -200,10 +229,22 @@ public class CrypterFactory {
 		
 	}
 	
+	/**
+	 * Legt ein CrypterXOR mit einem Schluessel an, um die 
+	 * XOR-Verschluesselung anzuwenden.
+	 * 
+	 * Beinhaltet encrypt(String); encrypt(List); decrypt(String); decrypt(List)
+	 *
+	 */
 	private static class CrypterXOR implements Crypter {
 
 		private String key;
 		
+		/**
+		 * Legt einen CrypterXOR mit dem entsprechenden Schluessel an.
+		 * 
+		 * @param key - Schluessel, mit dem das Verfahren durchgefuehrt werden soll.
+		 */
 		private CrypterXOR(String key) {
 			this.key = key;
 		}
@@ -275,6 +316,12 @@ public class CrypterFactory {
 		
 	}
 	
+	/**
+	 * Legt ein CrypterNull an, um die Null-Verschluesselung anzuwenden.
+	 * 
+	 * Beinhaltet encrypt(String); encrypt(List); decrypt(String); decrypt(List)
+	 *
+	 */
 	private static class CrypterNull implements Crypter {
 
 		@Override
@@ -316,6 +363,12 @@ public class CrypterFactory {
 		
 	}
 	
+	/**
+	 * Legt ein CrypterReverse an, um die Reverse-Verschluesselung anzuwenden.
+	 * 
+	 * Beinhaltet encrypt(String); encrypt(List); decrypt(String); decrypt(List)
+	 *
+	 */
 	private static class CrypterReverse implements Crypter {
 
 		@Override
